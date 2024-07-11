@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Setting = () => {
     const [user, setuser] = useState("")
   let navigate = useNavigate();
-  let url = "http://localhost:3000/students/dashboard";
+  let url = "https://bank-app-ags1.onrender.com/students/dashboard";
   let token = localStorage.getItem("token");
   useEffect(() => {
     axios
@@ -34,7 +34,7 @@ const Setting = () => {
   const [newPassword, setnewPassword] = useState("")
 
   const changePass = () => {
-    const url = 'http://localhost:3000/students/change_pass'
+    const url = 'https://bank-app-ags1.onrender.com/students/change_pass'
         axios.post(url, { email: user.email, oldPassword, newPassword })
         .then((res)=>{
             console.log(res.data)

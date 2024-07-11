@@ -7,7 +7,7 @@ const ResetPass = () => {
     const [email, setemail] = useState("")
 
     const resetPassword = () => {
-        const url = 'http://localhost:3000/students/reset_password'
+        const url = 'https://bank-app-ags1.onrender.com/students/reset_password'
         axios.post(url, { email })
         .then((res)=>{
             console.log(res.data)

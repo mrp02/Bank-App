@@ -18,7 +18,7 @@ import { IoMdSettings } from "react-icons/io";
 const Dashboard = () => {
   const [user, setuser] = useState("");
   let navigate = useNavigate();
-  let url = "http://localhost:3000/students/dashboard";
+  let url = "https://bank-app-ags1.onrender.com/students/dashboard";
   let token = localStorage.getItem("token");
   useEffect(() => {
     axios

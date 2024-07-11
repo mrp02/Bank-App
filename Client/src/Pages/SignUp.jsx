@@ -8,7 +8,7 @@ import Navbar from "../Components/Navbar";
 // HOW TO USE FORMIK TO COLLECT DATA
 const SignUP = () => {
   const navigate = useNavigate();
-  const URL = "http://localhost:3000/students/registerUser";
+  const URL = "https://bank-app-ags1.onrender.com/students/registerUser";
   const formik = useFormik({
     initialValues: {
       firstName: "",

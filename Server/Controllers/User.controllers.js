@@ -30,28 +30,19 @@ const loginUser = async (req, res) => {
         const user = await userModel.findOne({ email: email });
         if (!user) {
             return res.status(404).json({ message: "User not found" });
-        }else{
-            let confirmPassword = bcrypt.compare(password, user.password)
-            if (confirmPassword) {
+        }
+        bcrypt.compare(password, user.password, (err, result) => {
+            if (err) {
+                console.error("error compare", err);
+                return res.status(500).json({ message: "internal server error" });
+            }
+            if (result) {
                 const token = jwt.sign({ id: user._id }, secret, { expiresIn: "1d" });
                 return res.status(200).json({ message: "login successful", token: token, user: user });
-            }else{
+            } else {
                 return res.status(401).json({ message: "invalid email or password" });
             }
-        }
-
-        // bcrypt.compare(password, user.password, (err, result) => {
-        //     if (err) {
-        //         console.error("error compare", err);
-        //         return res.status(500).json({ message: "internal server error" });
-        //     }
-        //     if (result) {
-        //         const token = jwt.sign({ id: user._id }, secret, { expiresIn: "1d" });
-        //         return res.status(200).json({ message: "login successful", token: token, user: user });
-        //     } else {
-        //         return res.status(401).json({ message: "invalid email or password" });
-        //     }
-        // });
+        });
     } catch (error) {
         console.error("Error in loginUser:", error);
         return res.status(500).json({ message: "Internal server error" });

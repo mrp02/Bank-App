@@ -8,14 +8,13 @@ import Footer from "./Footer";
 // HOW TO USE FORMIK TO COLLECT DATA
 const Login = () => {
   let navigate = useNavigate();
-  const URL = "http://localhost:3000/students/login";
+  const URL = "https://bank-app-ags1.onrender.com/students/login";
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       axios
         .post(URL, values)
         .then((res) => {
@@ -26,6 +25,7 @@ const Login = () => {
           setTimeout(() => {
             navigate("/dashboard");
           }, 1000);
+
         })
         .catch((err) => {
           console.log(err);
